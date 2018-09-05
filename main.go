@@ -1,6 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"html/template"
+	"net/http"
+)
+
+var homeTemplate *template.Template
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	if err := homeTemplate.Execute(w, nil); err != nil {
+		panic(err)
+	}
+}
 
 func main() {
 	bc := NewBlockchain()
@@ -14,4 +27,13 @@ func main() {
 		fmt.Printf("Hash: %x\n", block.Hash)
 		fmt.Println()
 	}
+
+	var err error
+	homeTemplate, err = template.ParseFiles("views/home.html")
+	if err != nil {
+		panic(err)
+	}
+
+	http.HandleFunc("/", homeHandler)
+	http.ListenAndServe(":4000", nil)
 }
