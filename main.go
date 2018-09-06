@@ -36,6 +36,7 @@ func main() {
 		"views/home.gohtml",
 		"views/layouts/footer.gohtml",
 		"views/layouts/bulma.gohtml",
+		"views/layouts/block.gohtml",
 	)
 	if err != nil {
 		panic(err)
