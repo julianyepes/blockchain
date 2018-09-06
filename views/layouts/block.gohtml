@@ -1,7 +1,13 @@
 {{define "block"}}
- <p>Block #</p>
-Data: {{printf "%-20s" .Data}}<br>
-Prev. Hash: {{printf "%-20x" .PrevBlockHash}}<br>
-Hash: {{printf "%-20x" .Hash}}<br>
-=========================================
+<div class="column is-one-quarter">
+  <div class="box">
+      <p>
+        Block
+      </p>
+   
+        <p>data: {{printf "%-20s" .Data}}</p>
+        <p>Prev. Hash: {{printf "%-20x" .PrevBlockHash}}</p>
+        <p>Hash: {{printf "%-20x" .Hash}}</p>
+  </div>
+</div>
 {{end}}

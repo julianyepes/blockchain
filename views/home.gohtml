@@ -2,10 +2,10 @@
 
   <section class="section">
     <div class="container">
-      <h1 class="title"><i class="fas fa-th-large fa-spin"></i> Xblock</h1>
+      <h1 class="title"><i class="fas fa-th-large"></i> Xblock</h1>
       <p class="subtitle">This is a simple blockchain implementation written in <strong>Go</strong>!</p>
 
-      <div class="columns">
+      <div class="columns ">
         <div class="column is-one-third">
           <form>
             <div class="field ">
@@ -21,35 +21,22 @@
                 <button class="button is-black" type="submit">Add Block</button>
               </p>
             </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-black" type="submit">Delete all Blocks</button>
+              </p>
+            </div>
           </form>
-
-        </div>
-        <div class="column">
-
-          <!--The blockchain itself -->
-          <div class="field"> 
-          {{range .Blocks}}
-            {{template "block" .}}
-          {{end}}             
-            
-          </div>
-
-          <div class="field">
-            <p class="control">
-              <button class="button is-black" type="submit">Delete all Blocks</button>
-            </p>
-          </div>
         </div>
       </div>
+
+      <div class="columns is-multiline">
+            {{range .Blocks}}
+              {{template "block" .}}
+            {{end}}             
+      </div>
+
     </div>
 
   </section>
-
-
-
-
-  
-
-  {{template "footer"}}
-
 {{end}}
