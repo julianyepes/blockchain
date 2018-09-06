@@ -1,11 +1,13 @@
-<h1>Welcome to my blockchain site!</h1>
+{{define "yield"}}
 
-{{range .Blocks}}
-    <p>Block #</p>
-    Data: {{printf "%-20s" .Data}}<br>
-    Prev. Hash: {{printf "%-20x" .PrevBlockHash}}<br>
-    Hash: {{printf "%-20x" .Hash}}<br>
-    ========================
+  {{range .Blocks}}
+      <p>Block #</p>
+      Data: {{printf "%-20s" .Data}}<br>
+      Prev. Hash: {{printf "%-20x" .PrevBlockHash}}<br>
+      Hash: {{printf "%-20x" .Hash}}<br>
+      =========================================
+  {{end}}
+
+  {{template "footer"}}
+
 {{end}}
-
-{{template "footer"}}

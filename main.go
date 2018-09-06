@@ -13,7 +13,7 @@ var (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	if err := homeTemplate.Execute(w, bc); err != nil {
+	if err := homeTemplate.ExecuteTemplate(w, "bulma", bc); err != nil {
 		panic(err)
 	}
 }
@@ -35,6 +35,7 @@ func main() {
 	homeTemplate, err = template.ParseFiles(
 		"views/home.gohtml",
 		"views/layouts/footer.gohtml",
+		"views/layouts/bulma.gohtml",
 	)
 	if err != nil {
 		panic(err)

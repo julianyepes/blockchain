@@ -1,0 +1,60 @@
+{{define "bulma"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Xblock</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
+
+<body>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title"><i class="fas fa-th-large fa-spin"></i> Xblock</h1>
+      <p class="subtitle">This is a simple blockchain implementation written in <strong>Go</strong>!</p>
+
+      <div class="columns">
+        <div class="column is-one-third">
+          <form>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="New Block's Data">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-black" type="submit">Add Block</button>
+              </p>
+            </div>
+          </form>
+
+        </div>
+        <div class="column">
+
+          <!--The blockchain itself -->
+          <div class="field">              
+            {{template "yield" .}}
+          </div>
+
+          <div class="field">
+            <p class="control">
+              <button class="button is-black" type="submit">Delete all Blocks</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+
+</html>
+{{end}}
