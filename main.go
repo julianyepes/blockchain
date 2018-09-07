@@ -38,7 +38,7 @@ func main() {
 		template.FuncMap{"formatShort": formatShort},
 		"bulma",
 		"views/home.gohtml",
-		"views/layouts/block.gohtml",
+		"views/components/block.gohtml",
 	)
 
 	http.HandleFunc("/", homeHandler)

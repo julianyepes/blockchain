@@ -1,12 +1,17 @@
 package views
 
-import "html/template"
+import (
+	"html/template"
+	"path/filepath"
+)
+
+var (
+	LayoutDir   string = "views/layouts/"
+	TemplateExt string = ".gohtml"
+)
 
 func NewView(funcMap template.FuncMap, layout string, files ...string) *View {
-	files = append(files,
-		"views/layouts/bulma.gohtml",
-		"views/layouts/footer.gohtml",
-	)
+	files = append(files, layoutFiles()...)
 
 	var t *template.Template
 	var err error
@@ -28,4 +33,14 @@ func NewView(funcMap template.FuncMap, layout string, files ...string) *View {
 type View struct {
 	Template *template.Template
 	Layout   string
+}
+
+// layoutFiles returns a slice of strings representing
+// the layout files used in our application.
+func layoutFiles() []string {
+	files, err := filepath.Glob(LayoutDir + "*" + TemplateExt)
+	if err != nil {
+		panic(err)
+	}
+	return files
 }
