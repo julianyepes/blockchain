@@ -15,10 +15,7 @@ var (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err := homeView.Template.ExecuteTemplate(w, homeView.Layout, bc)
-	if err != nil {
-		panic(err)
-	}
+	must(homeView.Render(w, bc))
 }
 
 func main() {
@@ -44,4 +41,10 @@ func main() {
 	http.HandleFunc("/", homeHandler)
 	fmt.Println("Starting the server on port 4000...")
 	http.ListenAndServe(":4000", nil)
+}
+
+func must(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
