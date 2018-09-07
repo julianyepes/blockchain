@@ -4,16 +4,19 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+
+	"xblock/views"
 )
 
 var (
-	homeTemplate *template.Template
-	bc           *Blockchain
+	homeView *views.View
+	bc       *Blockchain
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	if err := homeTemplate.ExecuteTemplate(w, "bulma", bc); err != nil {
+	err := homeView.Template.ExecuteTemplate(w, "bulma", bc)
+	if err != nil {
 		panic(err)
 	}
 }
@@ -31,19 +34,13 @@ func main() {
 		fmt.Println()
 	}
 
-	var err error
-	homeTemplate, err = template.New("").Funcs(template.FuncMap{
-		"formatShort": formatShort,
-	}).ParseFiles(
+	homeView = views.NewView(
+		template.FuncMap{"formatShort": formatShort},
 		"views/home.gohtml",
-		"views/layouts/footer.gohtml",
-		"views/layouts/bulma.gohtml",
 		"views/layouts/block.gohtml",
 	)
-	if err != nil {
-		panic(err)
-	}
 
 	http.HandleFunc("/", homeHandler)
+	fmt.Println("Starting the server on port 4000...")
 	http.ListenAndServe(":4000", nil)
 }
