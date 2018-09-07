@@ -15,7 +15,7 @@ var (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	err := homeView.Template.ExecuteTemplate(w, "bulma", bc)
+	err := homeView.Template.ExecuteTemplate(w, homeView.Layout, bc)
 	if err != nil {
 		panic(err)
 	}
@@ -36,6 +36,7 @@ func main() {
 
 	homeView = views.NewView(
 		template.FuncMap{"formatShort": formatShort},
+		"bulma",
 		"views/home.gohtml",
 		"views/layouts/block.gohtml",
 	)
