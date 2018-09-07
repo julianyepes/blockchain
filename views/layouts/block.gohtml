@@ -6,8 +6,8 @@
       </p>
    
         <p>data: {{printf "%-20s" .Data}}</p>
-        <p>Prev. Hash: {{printf "%-20x" .PrevBlockHash}}</p>
-        <p>Hash: {{printf "%-20x" .Hash}}</p>
+        <p>Prev. Hash: {{.PrevBlockHash | formatShort}}</p>
+        <p>Hash: {{.Hash | formatShort}}</p>        
   </div>
 </div>
 {{end}}

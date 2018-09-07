@@ -32,7 +32,9 @@ func main() {
 	}
 
 	var err error
-	homeTemplate, err = template.ParseFiles(
+	homeTemplate, err = template.New("").Funcs(template.FuncMap{
+		"formatShort": formatShort,
+	}).ParseFiles(
 		"views/home.gohtml",
 		"views/layouts/footer.gohtml",
 		"views/layouts/bulma.gohtml",
