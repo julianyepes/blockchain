@@ -5,12 +5,13 @@ import (
 	"html/template"
 	"net/http"
 
+	"xblock/models"
 	"xblock/views"
 )
 
 var (
 	homeView *views.View
-	bc       *Blockchain
+	bc       *models.Blockchain
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +20,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	bc = NewBlockchain()
+	bc = models.NewBlockchain()
 
 	bc.AddBlock("Send 1 BTC to Ivan")
 	bc.AddBlock("Send 2 more BTC to Ivan")
