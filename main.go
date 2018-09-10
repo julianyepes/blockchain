@@ -5,39 +5,38 @@ import (
 	"html/template"
 	"net/http"
 
-	"xblock/models"
+	"xblock/controllers"
 	"xblock/views"
 )
 
 var (
 	homeView *views.View
-	bc       *models.Blockchain
+	bcC      *controllers.Blockchain
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	must(homeView.Render(w, bc))
+	must(homeView.Render(w, bcC.Blockchain))
 }
 
 func main() {
-	bc = models.NewBlockchain()
-
-	bc.AddBlock("Send 1 BTC to Ivan")
-	bc.AddBlock("Send 2 more BTC to Ivan")
-
-	for _, block := range bc.Blocks {
-		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
-		fmt.Printf("Data: %s\n", block.Data)
-		fmt.Printf("Hash: %x\n", block.Hash)
-		fmt.Println()
-	}
-
 	homeView = views.NewView(
 		template.FuncMap{"formatShort": formatShort},
 		"bulma",
 		"views/home.gohtml",
 		"views/components/block.gohtml",
 	)
+	bcC = controllers.NewBlockchain()
+
+	bcC.Blockchain.AddBlock("Send 1 BTC to Ivan")
+	bcC.Blockchain.AddBlock("Send 2 more BTC to Ivan")
+
+	for _, block := range bcC.Blockchain.Blocks {
+		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %x\n", block.Hash)
+		fmt.Println()
+	}
 
 	http.HandleFunc("/", homeHandler)
 	fmt.Println("Starting the server on port 4000...")
