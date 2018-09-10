@@ -4,39 +4,43 @@
     <div class="container">
       <h1 class="title"><i class="fas fa-th-large"></i> Xblock</h1>
       <p class="subtitle">This is a simple blockchain implementation written in <strong>Go</strong>!</p>
-
-      <div class="columns ">
+      
+      <!-- The create blockchain field -->
+      {{with .Blocks}}{{else}}
+        <article class="message is-info">
+          <div class="message-body">
+            It looks like there isn't any blockchain in the system. Create one first.
+          </div>
+        </article>
+        <form action="/create_blockchain" method="POST">
+          <div class="field">
+            <p class="control">
+              <button class="button is-black" type="submit">Create blockchain</button>
+            </p>
+          </div>
+        </form>
+      {{end}}
+      
+      <div class="columns">
         <div class="column is-one-third">
-          <form>
-            <div class="field ">
-              <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="New Block's Data">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </p>
-            </div>
+          {{with .Blocks}}
+            <!-- The add block button -->
             <div class="field">
               <p class="control">
                 <button class="button is-black" type="submit">Add Block</button>
               </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <button class="button is-black" type="submit">Delete all Blocks</button>
-              </p>
-            </div>
-          </form>
+            </div>            
+          {{end}}          
         </div>
       </div>
 
       <div class="columns is-multiline">
-            {{range .Blocks}}
-              {{template "block" .}}
-            {{end}}             
+        {{range .Blocks}}
+          {{template "block" .}}
+        {{end}}             
       </div>
 
     </div>
-
   </section>
+
 {{end}}

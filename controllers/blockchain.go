@@ -7,8 +7,13 @@ import (
 )
 
 func NewBlockchain() *Blockchain {
-	return &Blockchain{
+	/* return &Blockchain{
 		Blockchain: models.NewBlockchain(),
+	} */
+	return &Blockchain{
+		Blockchain: &models.Blockchain{
+			Blocks: nil,
+		},
 	}
 }
 
@@ -25,5 +30,6 @@ func (bc *Blockchain) Create(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Invalid request")
 		return
 	}
-	fmt.Fprintln(w, "This is a temporary response for creating a blockchain.")
+	bc.Blockchain = models.NewBlockchain()
+	http.Redirect(w, r, "/", http.StatusFound)
 }

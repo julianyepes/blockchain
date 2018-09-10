@@ -28,17 +28,8 @@ func main() {
 	)
 	bcC = controllers.NewBlockchain()
 
-	bcC.Blockchain.AddBlock("Send 1 BTC to Ivan")
-	bcC.Blockchain.AddBlock("Send 2 more BTC to Ivan")
-
-	for _, block := range bcC.Blockchain.Blocks {
-		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
-		fmt.Printf("Data: %s\n", block.Data)
-		fmt.Printf("Hash: %x\n", block.Hash)
-		fmt.Println()
-	}
-
 	http.HandleFunc("/", homeHandler)
+	http.HandleFunc("/create_blockchain", bcC.Create)
 	fmt.Println("Starting the server on port 4000...")
 	http.ListenAndServe(":4000", nil)
 }
