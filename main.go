@@ -30,6 +30,7 @@ func main() {
 
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/create_blockchain", bcC.Create)
+	http.HandleFunc("/add_block", bcC.Add)
 	fmt.Println("Starting the server on port 4000...")
 	http.ListenAndServe(":4000", nil)
 }
