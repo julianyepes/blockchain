@@ -1,0 +1,33 @@
+{{define "new-block-form"}}
+
+<div class="column is-one-quarter">
+  <div class="box block">
+
+    <h5 class="title is-5">Add New Block</h5>
+
+    <form action="/add_block" method="POST" name="newBlock">
+
+      <div class="field">
+        <p class="control">
+          <input class="input is-small" type="text" name="data" placeholder="Sent 1 coin to Julian" required maxlength="40">
+        </p>
+      </div>
+
+      <div class="field is-grouped is-grouped-right">
+        <p class="control">
+          <input class="button is-success is-outlined is-small" type="submit" value="Add block">
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<style>
+  .block {
+    height:150px;
+  }
+</style>
+
+{{end}}

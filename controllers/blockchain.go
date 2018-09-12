@@ -20,6 +20,7 @@ func NewBlockchainC() *BlockchainC {
 			"bulma",
 			"views/home.gohtml",
 			"views/components/block.gohtml",
+			"views/components/newBlockForm.gohtml",
 		),
 	}
 }

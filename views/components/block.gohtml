@@ -1,28 +1,41 @@
 {{define "block"}}
 <div class="column is-one-quarter">
   <div class="box">
-      <p>Block</p>
-      <p>data: {{printf "%-20s" .Data}}</p>  
+      
+      <div class="control" style="margin-bottom: 4px;">
+        <div class="tags has-addons">
+          <span class="tag is-light hash-label">Data</span>
+          <span class="tag is-primary">{{printf "%-20s" .Data}}</span>
+        </div>
+      </div>  
 
       <div class="control" style="margin-bottom: 4px;">
         <div class="tags has-addons">
-          <span class="tag is-dark hash-label">Prev. Hash</span>
-          <span class="tag is-light">{{.PrevBlockHash | formatShort}}</span>
+          <span class="tag is-light hash-label">Timestamp</span>
+          <span class="tag is-primary">{{.Timestamp | formatAsDate}}</span>
+        </div>
+      </div>
+
+      <div class="control" style="margin-bottom: 4px;">
+        <div class="tags has-addons">
+          <span class="tag is-light hash-label">Prev. Hash</span>
+          <span class="tag is-dark">{{.PrevBlockHash | formatShort}}</span>
         </div>
       </div> 
 
-      <div class="control">
+      <div class="control" style="margin-bottom: 4px;">
         <div class="tags has-addons">
-          <span class="tag is-dark hash-label">Hash</span>
+          <span class="tag is-light hash-label">Hash</span>
           <span class="tag is-success">{{.Hash | formatShort}}</span>
         </div>
       </div>      
+
   </div>
 </div>
 
 <style>
 .hash-label{
-  width: 70px;
+  width: 90px;
 }
 </style>
 {{end}}

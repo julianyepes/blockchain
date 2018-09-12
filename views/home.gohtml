@@ -7,14 +7,11 @@
       
       {{with .Blocks}}
         <!-- The add block section -->
-        <div class="columns">
-          <div class="column is-one-third">
-            <div class="field">
-              <p class="control">
-                <button class="button is-black" onclick="toggleModal()">Add Block</button>
-              </p>
-            </div>            
-          </div>
+        <div class="columns is-multiline">
+          {{template "new-block-form"}}
+          {{range .}}
+            {{template "block" .}}
+          {{end}}             
         </div>
       {{else}}
         <!-- The create blockchain section -->
@@ -32,46 +29,7 @@
         </form>
       {{end}}
 
-      <div class="columns is-multiline">
-        {{range .Blocks}}
-          {{template "block" .}}
-        {{end}}             
-      </div>
-
     </div>
   </section>
-
-  <!-- The modal for creating a block -->
-  <div class="modal" id="toggleModal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <!-- The form -->
-      <div class="box">
-        <form action="/add_block" method="POST">
-          <div class="field">
-            <label class="label">Block's data</label>
-            <div class="control">
-              <input class="input" name="data" type="text" placeholder="Send 1 BTC to Julian">
-            </div>
-          </div>
-          <div class="field is-grouped is-grouped-right">
-            <div class="control">
-              <button class="button is-light" onclick="toggleModal()" type="reset">Cancel</button>
-            </div>
-            <div class="control">
-              <button class="button is-link" type="submit">Add</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <button class="modal-close is-large" onclick="toggleModal()" aria-label="close"></button>
-  </div>
-
-  <script>
-    function toggleModal() {
-      document.getElementById("toggleModal").classList.toggle('is-active')
-    }
-  </script>
 
 {{end}}

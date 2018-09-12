@@ -7,3 +7,4 @@ exp/
 
 # Database files
 *.db
+*.db.lock
