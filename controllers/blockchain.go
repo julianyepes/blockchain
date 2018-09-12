@@ -13,7 +13,10 @@ func NewBlockchainC() *BlockchainC {
 	return &BlockchainC{
 		Blockchain: models.NewBlockchain(),
 		homeView: views.NewView(
-			template.FuncMap{"formatShort": formatShort},
+			template.FuncMap{
+				"formatShort":  formatShort,
+				"formatAsDate": formatAsDate,
+			},
 			"bulma",
 			"views/home.gohtml",
 			"views/components/block.gohtml",
