@@ -4,3 +4,6 @@ xblock.exe
 
 # Experimental directory
 exp/
+
+# Database files
+*.db
