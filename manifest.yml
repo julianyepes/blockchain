@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 64M
+  instances: 1
+  domain: mybluemix.net
+  name: block-chain
+  host: block-chain
+  disk_quota: 1024M
+  command: xblock
+  buildpack: https://github.com/cloudfoundry/go-buildpack.git
